@@ -235,6 +235,7 @@ istream &operator>>(istream &is, String &string) {
         //on continue tant qu'on ne trouve pas d'espace ou de retour à la ligne
     }while (temp != '\n' && temp != ' ');
 
+    string.size = string.stringLength();
     //on finit par concaténer le symbole de fin.
     string.charTab[index-1] = String::EOL;
 

@@ -60,6 +60,46 @@ private :
      */
     friend std::istream &operator>>(std::istream &is, String &str);
 
+    /**
+ * @param i : la place du caractère dans la chaine
+ * @throw out_of_range si l'index est hors-bornes
+ * @return une référence sur le i-ème caractère
+ */
+    char &at(size_t i);
+
+    /**
+     * @param i : la place du caractère dans la chaine
+     * @throw out_of_range si l'index est hors-bornes
+     * @return le i-ème caractère
+     */
+    char at(size_t i) const;
+
+    /**
+ * @param value : la valeur de la 2nd String à tester
+ * @return true si elles sont inégales, false sinon
+ */
+    bool equals(const String &value) const;
+
+    /**
+     * @param value : la valeur de la 2nd chaine à tester
+     * @return true si elles sont inégales, false sinon
+     */
+    bool equals(const char *value) const;
+
+    /**
+ * Permet de concaténer avec une instance de la classe
+ * @param value : la String à concaténer
+ * @return l'instance de la classe avec les valeurs concaténées
+ */
+    String &append(const String &value);
+
+    /**
+     * Permet de concaténer avec une chaine de caractère
+     * @param value : la chaine à concaténer
+     * @return L'instance de la classe avec les valeurs concaténées
+     */
+    String &append(const char *value);
+
 public :
 
     /**
@@ -142,20 +182,6 @@ public :
     char operator[](size_t i) const;
 
     /**
-     * @param i : la place du caractère dans la chaine
-     * @throw out_of_range si l'index est hors-bornes
-     * @return une référence sur le i-ème caractère
-     */
-    char &at(size_t i);
-
-    /**
-     * @param i : la place du caractère dans la chaine
-     * @throw out_of_range si l'index est hors-bornes
-     * @return le i-ème caractère
-     */
-    char at(size_t i) const;
-
-    /**
      * @param value : la valeur de la 2nd String à tester
      * @return true si elles sont inégales, false sinon
      */
@@ -166,18 +192,6 @@ public :
      * @return true si elles sont inégales, false sinon
      */
     bool operator==(const char *value) const;
-
-    /**
-     * @param value : la valeur de la 2nd String à tester
-     * @return true si elles sont inégales, false sinon
-     */
-    bool equals(const String &value) const;
-
-    /**
-     * @param value : la valeur de la 2nd chaine à tester
-     * @return true si elles sont inégales, false sinon
-     */
-    bool equals(const char *value) const;
 
     /**
      * Permet de tester l'inégalité de deux Strings
@@ -260,20 +274,6 @@ public :
      * @return L'instance de la classe avec les valeurs concaténées
      */
     String &operator+=(const char *value);
-
-    /**
-     * Permet de concaténer avec une instance de la classe
-     * @param value : la String à concaténer
-     * @return l'instance de la classe avec les valeurs concaténées
-     */
-    String &append(const String &value);
-
-    /**
-     * Permet de concaténer avec une chaine de caractère
-     * @param value : la chaine à concaténer
-     * @return L'instance de la classe avec les valeurs concaténées
-     */
-    String &append(const char *value);
 
     /**
      * Permet d'extraite une sous-chaine entre deux indices donnés
