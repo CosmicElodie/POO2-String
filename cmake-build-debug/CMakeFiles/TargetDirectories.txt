@@ -1,0 +1,3 @@
+C:/Users/Elodie/Desktop/SCHOOL/SEMESTRE 4/POO2/Laboratoires/POO2-String/cmake-build-debug/CMakeFiles/POO2_classString.dir
+C:/Users/Elodie/Desktop/SCHOOL/SEMESTRE 4/POO2/Laboratoires/POO2-String/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Elodie/Desktop/SCHOOL/SEMESTRE 4/POO2/Laboratoires/POO2-String/cmake-build-debug/CMakeFiles/rebuild_cache.dir
