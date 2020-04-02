@@ -217,22 +217,26 @@ ostream &operator<<(ostream &os, const String &string) {
 }
 
 istream &operator>>(istream &is, String &string) {
-    size_t MAX_SIZE_BUFFER = 256;
-    string = String();
-
-    //On créé un buffer
-    char *buffer = new char[MAX_SIZE_BUFFER];
-    size_t index = 0;
-    char temp;
-    while ((temp != '\n') && (index < MAX_SIZE_BUFFER-1))
-    {
-        is.get(temp);
-        buffer[index] = temp;
-        ++index;
+     size_t MAX_SIZE_BUFFER = 256;
+    if(string.charTab) {
+        delete[] string.charTab;
+        string = new char[MAX_SIZE_BUFFER];
     }
-    buffer[index] = '\0';
-    string.append(buffer);
 
-    delete[] buffer;
+    size_t index = 0;
+    char temp; //permet d'accueillir la lettre lue
+
+    do{
+        //on lit lettre par lettre
+        is.get(temp);
+        //on met ça dans notre string
+        string.charTab[index] = temp;
+        ++index;
+        //on continue tant qu'on ne trouve pas d'espace ou de retour à la ligne
+    }while (temp != '\n' && temp != ' ');
+
+    //on finit par concaténer le symbole de fin.
+    string.charTab[index-1] = String::EOL;
+
     return is;
 }

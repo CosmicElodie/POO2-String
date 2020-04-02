@@ -50,7 +50,7 @@ int main() {
     String str;
     cout << "Veuillez saisir une chaine : \n";
     cout << "str before : " << str << endl;
-    cin >> reinterpret_cast<char *&>(str);
+    cin >> str;
     cout << "str after : " << str << endl;
 
 

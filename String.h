@@ -21,7 +21,7 @@ private :
     static const char EOL = '\0';
 
     //représente la chaine de caractères de la String
-    char* charTab;
+    char *charTab;
 
     //représente la taille de la String
     size_t size;
@@ -44,12 +44,13 @@ private :
      * @param value : la valeur numérique
      */
     template<typename T>
-    void buildNumericString(const char * format, T value);
+    void buildNumericString(const char *format, T value);
 
     /**
      * Opérateur de flux de sortie
+     * @throw invalid_argument si les bornes renseignées sont fausses.
      */
-    friend std::ostream& operator<<(std::ostream& os, const String& string);
+    friend std::ostream &operator<<(std::ostream &os, const String &string);
 
     /**
      * Opérateur de flux d'entrée
@@ -57,7 +58,7 @@ private :
      * @param string : la string
      * @return une référence sur le flux
      */
-    friend std::istream& operator<<(std::istream& is, String& str);
+    friend std::istream &operator>>(std::istream &is, String &str);
 
 public :
 
@@ -70,9 +71,10 @@ public :
     /**
      * Constructeur
      * Permet de créer une String à partir d'une chaine de caractères.
+     * @throw invalid_argument si l'argument mène à nullptr.
      * @param value
      */
-    explicit String(const char* value);
+    explicit String(const char *value);
 
     /**
      * Constructeur
@@ -86,7 +88,7 @@ public :
      * Permet de créer une String à partir d'une autre String
      * @param copy : la string à copier
      */
-    String(const String& copy);
+    String(const String &copy);
 
     /**
      * Constructeur avec paramètre
@@ -116,8 +118,6 @@ public :
      */
     ~String();
 
-    //---------------------------------------------------------
-
     /**
      * @return la longueur de la String
      */
@@ -127,13 +127,13 @@ public :
      * Permet de représenter la String sous forme de const char*
      * @return la String représentée sous forme de const char*
      */
-    const char* c_c_String();
+    const char *c_c_String();
 
     /**
      * @param i : la place du caractère dans la chaine
      * @return une référence sur le i-ème charactère
      */
-    char& operator[](size_t i);
+    char &operator[](size_t i);
 
     /**
      * @param i : la place du caractère dans la chaine
@@ -143,12 +143,14 @@ public :
 
     /**
      * @param i : la place du caractère dans la chaine
+     * @throw out_of_range si l'index est hors-bornes
      * @return une référence sur le i-ème caractère
      */
-    char& at(size_t i);
+    char &at(size_t i);
 
     /**
      * @param i : la place du caractère dans la chaine
+     * @throw out_of_range si l'index est hors-bornes
      * @return le i-ème caractère
      */
     char at(size_t i) const;
@@ -157,121 +159,121 @@ public :
      * @param value : la valeur de la 2nd String à tester
      * @return true si elles sont inégales, false sinon
      */
-    bool operator==(const String& value) const;
+    bool operator==(const String &value) const;
 
     /**
      * @param value : la valeur de la 2nd chaine à tester
      * @return true si elles sont inégales, false sinon
      */
-    bool operator==(const char* value) const;
+    bool operator==(const char *value) const;
 
     /**
      * @param value : la valeur de la 2nd String à tester
      * @return true si elles sont inégales, false sinon
      */
-    bool equals(const String& value) const;
+    bool equals(const String &value) const;
 
     /**
      * @param value : la valeur de la 2nd chaine à tester
      * @return true si elles sont inégales, false sinon
      */
-    bool equals(const char* value) const;
+    bool equals(const char *value) const;
 
     /**
      * Permet de tester l'inégalité de deux Strings
      * @param value : la valeur de la 2nd String à tester
      * @return true si elles sont inégales, false sinon
      */
-    bool operator!=(const String& value) const;
+    bool operator!=(const String &value) const;
 
     /**
      * Permet de tester l'inégalité de deux chaines de caractères
      * @param value : la valeur de la 2nd chaine à tester
      * @return true si elles sont inégales, false sinon
      */
-    bool operator!=(const char* value) const;
+    bool operator!=(const char *value) const;
 
     /**
      * Opérateur d'affectation
      * Modification de son état à partir d'une autre instance de la classe String
      * @param value : la valeur de l'instance à affecter à notre String
      */
-    String& operator=(const String& value);
+    String &operator=(const String &value);
 
     /**
      * Opérateur d'affectation
      * Modification de son état à partir d'une chaine de caractères
      * @param value : la valeur de l'instance à affecter à notre String
      */
-    String& operator=(const char* value);
+    String &operator=(const char *value);
 
     /**
      * Modification de son état à partir d'une autre instance de la classe String
      * @param value : la valeur de l'instance à affecter à notre String
      */
-    void assign(const String& value);
+    void assign(const String &value);
 
     /**
      * Modification de son état à partir d'une chaine de caractères
      * @param value : la valeur de l'instance à affecter à notre String
      */
-    void assign(const char* value);
+    void assign(const char *value);
 
     /**
      * Permet de concaténer avec une instance de la classe
      * @param value : la String à concaténer
      * @return une nouvelle instance de la classe avec les valeurs concaténées
      */
-    String operator+(const String& value) const;
+    String operator+(const String &value) const;
 
     /**
      * Permet de concaténer avec une chaine de caractère
      * @param value : la chaine à concaténer
      * @return une nouvelle instance de la classe avec les valeurs concaténées
      */
-    String operator+(const char* value) const;
+    String operator+(const char *value) const;
 
     /**
      * Permet de concaténer avec une instance de la classe
      * @param value : la String à concaténer
      * @return une nouvelle instance de la classe avec les valeurs concaténées
      */
-    String concat(const String& value) const;
+    String concat(const String &value) const;
 
     /**
      * Permet de concaténer avec une chaine de caractère
      * @param value : la chaine à concaténer
      * @return une nouvelle instance de la classe avec les valeurs concaténées
      */
-    String concat(const char* value) const;
-
-    /**
-     * Permet de concaténer avec une instance de la classe
-     * @param value : la String à concaténer
-     * @return l'instance de la classe avec les valeurs concaténées
-     */
-    String& operator+=(const String& value);
-
-    /**
-     * Permet de concaténer avec une chaine de caractère
-     * @param value : la chaine à concaténer
-     * @return L'instance de la classe avec les valeurs concaténées
-     */
-    String& operator+=(const char* value);
+    String concat(const char *value) const;
 
     /**
      * Permet de concaténer avec une instance de la classe
      * @param value : la String à concaténer
      * @return l'instance de la classe avec les valeurs concaténées
      */
-    String& append(const String& value);
+    String &operator+=(const String &value);
 
     /**
      * Permet de concaténer avec une chaine de caractère
      * @param value : la chaine à concaténer
      * @return L'instance de la classe avec les valeurs concaténées
      */
-    String& append(const char* value);
+    String &operator+=(const char *value);
+
+    /**
+     * Permet de concaténer avec une instance de la classe
+     * @param value : la String à concaténer
+     * @return l'instance de la classe avec les valeurs concaténées
+     */
+    String &append(const String &value);
+
+    /**
+     * Permet de concaténer avec une chaine de caractère
+     * @param value : la chaine à concaténer
+     * @return L'instance de la classe avec les valeurs concaténées
+     */
+    String &append(const char *value);
 
     /**
      * Permet d'extraite une sous-chaine entre deux indices donnés
@@ -281,4 +283,5 @@ public :
      */
     String substr(size_t frontIndex, size_t endIndex) const;
 };
+
 #endif //POO2_CLASSSTRING_STRING_H
